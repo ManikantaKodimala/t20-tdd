@@ -7,5 +7,13 @@ const scoringProbability: { [name: string]: number[] } = {
 
 export function predictScore(palyerName: string) {
   let random = Math.floor(Math.random() * 100);
-  return random;
+  let probabilities: number[] = scoringProbability[palyerName];
+  let weight: number = 0;
+  for (let i = 0; i < probabilities.length; i++) {
+    weight += probabilities[i];
+    if (weight >= random) {
+      if (i === probabilities.length - 1) return -1;
+      return i;
+    }
+  }
 }
