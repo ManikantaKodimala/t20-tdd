@@ -30,4 +30,11 @@ describe("spying for score prediction ", () => {
     let recieved = predictScore(batsMan);
     expect(recieved).toBe(expected);
   });
+   test("predicting score for Ns_Nodhi,which is 6", () => {
+     jest.spyOn(global.Math, "random").mockImplementation(() => 0.6);
+     let expected = 2;
+     let batsMan = "Ns_Nodhi";
+     let recieved = predictScore(batsMan);
+     expect(recieved).toBe(expected);
+   });
 });
