@@ -35,6 +35,7 @@ export class Team {
     memberStatus.hasPlayed = true;
 
     if (score != -1) memberStatus.score += score;
+    else memberStatus.isOut = true;
     this.individualScore.set(name, memberStatus);
   }
 }
