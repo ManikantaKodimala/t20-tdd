@@ -35,4 +35,13 @@ describe("", () => {
     let recieved = team.isPlayerOut(playerName);
     expect(recieved).toBe(excpeted);
   });
+    test("checks whether player is out or not,here player is out ", () => {
+      playerName = "Kirat_Nohil";
+      isNewPlayer = false;
+      score = -1;
+      team.setScore(playerName, score, isNewPlayer);
+      let excpeted = true;
+      let recieved = team.isPlayerOut(playerName);
+      expect(recieved).toBe(excpeted);
+    });
 });
