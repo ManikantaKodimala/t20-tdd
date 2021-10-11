@@ -25,6 +25,11 @@ export class Team {
   getPlayerScore(name: string): number {
     return this.individualScore.get(name)!.score;
   }
+
+  isPlayerOut(name: string): boolean {
+    return this.individualScore.get(name)!.isOut;
+  }
+
   setScore(name: string, score: number, newPlayer: boolean): void {
     let memberStatus = this.individualScore.get(name)!;
     memberStatus.hasPlayed = true;
