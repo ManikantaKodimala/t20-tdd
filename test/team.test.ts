@@ -47,9 +47,27 @@ describe("", () => {
     test("checks whether player has palyed or not,here player has not played ", () => {
       playerName = "Kirat_Nohil";
       isNewPlayer = true;
-      score = -1;
       let excpeted = false;
       let recieved = team.isPlayerPlayed(playerName);
+      expect(recieved).toBe(excpeted);
+    });
+    test("checks whether player has palyed or not,here player has played ", () => {
+      playerName = "Kirat_Nohil";
+      isNewPlayer = false;
+      score = -1;
+      team.setScore(playerName, score, isNewPlayer);
+      let excpeted = true;
+      let recieved = team.isPlayerPlayed(playerName);
+      expect(recieved).toBe(excpeted);
+    });
+
+    test("checks numbers of balls a player played,here zero", () => {
+      playerName = "Kirat_Nohil";
+      isNewPlayer = true;
+      score = 0;
+      team.setScore(playerName, score, isNewPlayer);
+      let excpeted = 0;
+      let recieved = team.getPlayerBallsPlayed(playerName);
       expect(recieved).toBe(excpeted);
     });
 });
