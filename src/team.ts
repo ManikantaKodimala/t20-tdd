@@ -27,7 +27,9 @@ export class Team {
   }
   setScore(name: string, score: number, newPlayer: boolean): void {
     let memberStatus = this.individualScore.get(name)!;
-    memberStatus.score += score;
-   
+    memberStatus.hasPlayed = true;
+
+    if (score != -1) memberStatus.score += score;
+    this.individualScore.set(name, memberStatus);
   }
 }
