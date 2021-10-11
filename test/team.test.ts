@@ -70,4 +70,13 @@ describe("", () => {
       let recieved = team.getPlayerBallsPlayed(playerName);
       expect(recieved).toBe(excpeted);
     });
+    test("checks numbers of balls a player played,here 1", () => {
+      playerName = "Kirat_Nohil";
+      isNewPlayer = false;
+      score = 0;
+      team.setScore(playerName, score, isNewPlayer);
+      let excpeted = 1;
+      let recieved = team.getPlayerBallsPlayed(playerName);
+      expect(recieved).toBe(excpeted);
+    });
 });

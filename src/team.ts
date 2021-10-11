@@ -34,6 +34,10 @@ export class Team {
     return this.individualScore.get(name)!.hasPlayed;
   }
 
+  getPlayerBallsPlayed(name: string): number {
+    return this.individualScore.get(name)!.ballsPlayed;
+  }
+
   setScore(name: string, score: number, newPlayer: boolean): void {
     let memberStatus = this.individualScore.get(name)!;
     memberStatus.hasPlayed = true;
