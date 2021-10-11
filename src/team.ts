@@ -41,7 +41,7 @@ export class Team {
   setScore(name: string, score: number, newPlayer: boolean): void {
     let memberStatus = this.individualScore.get(name)!;
     memberStatus.hasPlayed = true;
-
+     if (!newPlayer) memberStatus.ballsPlayed++;
     if (score != -1) memberStatus.score += score;
     else memberStatus.isOut = true;
     this.individualScore.set(name, memberStatus);
