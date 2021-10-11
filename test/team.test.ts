@@ -48,8 +48,7 @@ describe("", () => {
       playerName = "Kirat_Nohil";
       isNewPlayer = true;
       score = -1;
-      team.setScore(playerName, score, isNewPlayer);
-      let excpeted = true;
+      let excpeted = false;
       let recieved = team.isPlayerPlayed(playerName);
       expect(recieved).toBe(excpeted);
     });
