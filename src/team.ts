@@ -22,4 +22,12 @@ export class Team {
       });
     }
   }
+  getPlayerScore(name: string): number {
+    return this.individualScore.get(name)!.score;
+  }
+  setScore(name: string, score: number, newPlayer: boolean): void {
+    let memberStatus = this.individualScore.get(name)!;
+    memberStatus.score += score;
+   
+  }
 }
