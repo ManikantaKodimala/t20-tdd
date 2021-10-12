@@ -9,12 +9,12 @@ export enum TeamMembers {
 
 export class Team {
   private name: string;
-  private individualScore = new Map<string, playerStatus>();
+  private individualPlayerStatus = new Map<string, playerStatus>();
 
   constructor(name: string) {
     this.name = name;
     for (let index = 0; index < 4; index++) {
-      this.individualScore.set(TeamMembers[index], {
+      this.individualPlayerStatus.set(TeamMembers[index], {
         score: 0,
         ballsPlayed: 0,
         isOut: false,
@@ -23,27 +23,48 @@ export class Team {
     }
   }
   getPlayerScore(name: string): number {
-    return this.individualScore.get(name)!.score;
+    return this.individualPlayerStatus.get(name)!.score;
   }
 
   isPlayerOut(name: string): boolean {
-    return this.individualScore.get(name)!.isOut;
+    return this.individualPlayerStatus.get(name)!.isOut;
   }
 
   isPlayerPlayed(name: string): boolean {
-    return this.individualScore.get(name)!.hasPlayed;
+    return this.individualPlayerStatus.get(name)!.hasPlayed;
   }
 
-  getPlayerBallsPlayed(name: string): number {
-    return this.individualScore.get(name)!.ballsPlayed;
+  getBallsPlayedBy(name: string): number {
+    return this.individualPlayerStatus.get(name)!.ballsPlayed;
   }
 
-  setScore(name: string, score: number, newPlayer: boolean): void {
-    let memberStatus = this.individualScore.get(name)!;
+  setPlayer(name: string) {
+    let memberStatus = this.individualPlayerStatus.get(name)!;
     memberStatus.hasPlayed = true;
-     if (!newPlayer) memberStatus.ballsPlayed++;
-    if (score != -1) memberStatus.score += score;
-    else memberStatus.isOut = true;
-    this.individualScore.set(name, memberStatus);
+    this.individualPlayerStatus.set(name, memberStatus);
+  }
+
+  setScore(name: string, score: number): void {
+    let playerDetails = this.individualPlayerStatus.get(name)!;
+    playerDetails.ballsPlayed++;
+    if (score != -1) playerDetails.score += score;
+    else playerDetails.isOut = true;
+    this.individualPlayerStatus.set(name, playerDetails);
+  }
+
+  TeamScoreCard(): void {
+    for (let index = 0; index < 4; index++) {
+      let memberStatus = this.individualPlayerStatus.get(TeamMembers[index])!;
+      if (memberStatus.hasPlayed) {
+        let score = memberStatus.score;
+        let ballsPlayed = memberStatus.ballsPlayed;
+        let out = memberStatus.isOut;
+        console.log(
+          `${TeamMembers[index]} - ${score}${
+            !out ? "*" : ""
+          } (${ballsPlayed} balls)`
+        );
+      }
+    }
   }
 }
