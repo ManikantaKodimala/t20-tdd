@@ -3,7 +3,7 @@ import { predictScore } from "./prediction";
 
 export class Game {
   private static readonly scoreCard: number[] = [1, 2, 3, 4, 5, 6, 0, -1];
-  private score: number;
+  private score: number = 0;
   private team: Team;
   private oversLeft: number = 4;
   private balls: number = 6;
@@ -74,7 +74,7 @@ export class Game {
       [this.batsMan, this.nonStriker] = [this.nonStriker, this.batsMan];
     }
     this.gameStatus();
-    this.team.TeamScoreCard();
+    console.log(this.team.TeamScoreCard());
   }
 
   gameStatus() {

@@ -52,19 +52,19 @@ export class Team {
     this.individualPlayerStatus.set(name, playerDetails);
   }
 
-  TeamScoreCard(): void {
+  TeamScoreCard(): string {
+    let scoreCard: string = "";
     for (let index = 0; index < 4; index++) {
       let memberStatus = this.individualPlayerStatus.get(TeamMembers[index])!;
       if (memberStatus.hasPlayed) {
         let score = memberStatus.score;
         let ballsPlayed = memberStatus.ballsPlayed;
         let out = memberStatus.isOut;
-        console.log(
-          `${TeamMembers[index]} - ${score}${
-            !out ? "*" : ""
-          } (${ballsPlayed} balls)`
-        );
+        scoreCard += `${TeamMembers[index]} - ${score}${
+          !out ? "*" : ""
+        } (${ballsPlayed} balls)\n`;
       }
     }
+    return scoreCard;
   }
 }
